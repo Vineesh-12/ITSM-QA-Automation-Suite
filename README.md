@@ -27,4 +27,37 @@ Enterprise applications require rigorous testing to ensure stability across mult
 *   **Test Framework:** TestNG
 *   **Version Control:** Git & GitHub
 
-*(More sections will be added as the project phases are completed)*
+## 6. Manual Testing
+The `Manual_Testing_Docs` folder contains `TestCases.csv` which covers 25 comprehensive test cases categorized into:
+* Login Testing
+* Incident Management (Functional)
+* SLA Validation
+* Negative & Boundary Testing
+* Regression Scenarios
+
+## 7. UI Automation
+Located in `automation/src/test/java/ui/`. We utilize the Page Object Model (POM) concept and TestNG annotations to run 10 automated browser tests using Selenium WebDriver, validating:
+* Authentication flows
+* Dashboard rendering
+* Navigation and Menu interactions
+
+## 8. API Automation
+Located in `automation/src/test/java/api/`. We use REST Assured to hit an enterprise mock backend (reqres.in) to validate:
+* `GET` (Fetch user details)
+* `POST` (Create new user)
+* `PUT` (Update user status)
+* `DELETE` (Remove user)
+* `Negative` (404 Not Found handling)
+
+## 9. Defect Tracking & Reporting
+The repository includes simulated Defect Reports (`Defect_Reports.md`) capturing standard bug lifecycle tracking. Upon executing the TestNG suite, an automated HTML report is generated inside the `reports/` directory highlighting pass/fail metrics.
+
+## 10. How to Run Locally
+1. Clone this repository.
+2. Ensure you have Java 17+ and Maven installed.
+3. Navigate to the `automation` folder in your terminal.
+4. Run the following command:
+   ```bash
+   mvn clean test
+   ```
+5. Check the `target/surefire-reports` folder for the generated TestNG results.
