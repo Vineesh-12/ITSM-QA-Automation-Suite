@@ -1,0 +1,26 @@
+Test Case ID,Module,Test Scenario,Preconditions,Test Steps,Test Data,Expected Result,Actual Result,Status,Severity
+TC001,Login,Valid login to ITSM portal,User account exists,1. Navigate to login page 2. Enter username 3. Enter password 4. Click Login,user/pass,User should be redirected to dashboard,Pending,Untested,High
+TC002,Login,Invalid password,User account exists,1. Navigate to login page 2. Enter username 3. Enter incorrect password 4. Click Login,user/wrongpass,Error message 'Invalid credentials' displayed,Pending,Untested,High
+TC003,Login,Empty username field,None,1. Navigate to login page 2. Leave username empty 3. Enter password 4. Click Login,empty/pass,Validation message 'Username required' displayed,Pending,Untested,Medium
+TC004,Login,Empty password field,None,1. Navigate to login page 2. Enter username 3. Leave password empty 4. Click Login,user/empty,Validation message 'Password required' displayed,Pending,Untested,Medium
+TC005,Login,SQL Injection in login,None,1. Navigate to login page 2. Enter SQL payload in username 3. Click Login,"' OR 1=1 --",Login rejected and error handled gracefully,Pending,Untested,Critical
+TC006,Incident Management,Create new incident ticket,Logged in as user,1. Go to Incidents 2. Click New 3. Fill required fields 4. Submit,Title: Issue network,Incident ticket created successfully with ID,Pending,Untested,High
+TC007,Incident Management,Assign priority to ticket,Ticket exists,1. Open ticket 2. Change priority to High 3. Save,Priority: High,Ticket priority updated to High successfully,Pending,Untested,High
+TC008,Incident Management,Update ticket status,Ticket exists,1. Open ticket 2. Change status to In Progress 3. Save,Status: In Progress,Ticket status updated to In Progress,Pending,Untested,High
+TC009,Incident Management,Add comment to ticket,Ticket exists,1. Open ticket 2. Type comment 3. Click Add Comment,Comment: "Working on it",Comment is added with timestamp and user name,Pending,Untested,Medium
+TC010,Incident Management,Resolve ticket,Ticket exists,1. Open ticket 2. Change status to Resolved 3. Add resolution notes 4. Save,Notes: "Fixed router",Ticket status changes to Resolved,Pending,Untested,High
+TC011,Incident Management,Reopen a resolved ticket,Ticket is Resolved,1. Open resolved ticket 2. Click Reopen 3. Add reason 4. Save,Reason: "Still failing",Ticket status changes to In Progress,Pending,Untested,High
+TC012,Incident Management,Assign ticket to user,Ticket exists,1. Open ticket 2. Select assignee 3. Save,Assignee: "John Doe",Ticket is assigned to selected user,Pending,Untested,High
+TC013,Incident Management,Close ticket,Ticket is Resolved,1. Open resolved ticket 2. Click Close 3. Save,None,Ticket status changes to Closed and becomes read-only,Pending,Untested,Medium
+TC014,SLA Management,SLA breaches after time limit,Ticket exists with SLA,1. Create ticket 2. Wait past SLA limit 3. Check ticket,Wait 4 hours,SLA status changes to Breached and highlights red,Pending,Untested,High
+TC015,Negative Testing,Create ticket without mandatory fields,Logged in,1. Go to Incidents 2. Click New 3. Leave Title blank 4. Submit,Title: empty,Validation error 'Title is required',Pending,Untested,Medium
+TC016,Negative Testing,Update closed ticket,Ticket is Closed,1. Open closed ticket 2. Try to add comment or change status,None,Fields should be disabled and changes rejected,Pending,Untested,Medium
+TC017,Negative Testing,Assign ticket to inactive user,Ticket exists,1. Open ticket 2. Search for inactive user in assignee,Inactive User,Inactive users should not appear in search,Pending,Untested,Medium
+TC018,Negative Testing,Upload invalid file type as attachment,Ticket exists,1. Open ticket 2. Click Attach 3. Upload .exe file,File: virus.exe,Upload blocked and error message displayed,Pending,Untested,High
+TC019,Boundary/Validation,Ticket title exceeds max length,Logged in,1. Click New Incident 2. Enter 256 character title 3. Submit,256 char string,Input truncated or validation error shown,Pending,Untested,Low
+TC020,Boundary/Validation,Ticket description exceeds max length,Logged in,1. Click New Incident 2. Enter very long description,10000 char string,Application accepts input without crashing,Pending,Untested,Medium
+TC021,Boundary/Validation,Upload maximum allowed file size,Ticket exists,1. Open ticket 2. Attach exactly 25MB file,File: 25MB.pdf,File uploads successfully,Pending,Untested,Medium
+TC022,Boundary/Validation,Upload file exceeding max size,Ticket exists,1. Open ticket 2. Attach 26MB file,File: 26MB.pdf,Upload fails with 'File too large' error,Pending,Untested,Medium
+TC023,Regression,Verify login remains stable after UI update,Updated UI deployed,1. Navigate to login 2. Login,Valid credentials,Login succeeds without visual defects,Pending,Untested,High
+TC024,Regression,Verify old tickets are accessible,System update performed,1. Search for ticket older than 1 year 2. Open it,Old Ticket ID,Ticket data loads correctly without corruption,Pending,Untested,High
+TC025,Regression,Verify reporting module generates correct counts,New ticket created,1. Go to Reports 2. Run Open Tickets report,None,Report count accurately reflects the new ticket,Pending,Untested,High
